@@ -170,17 +170,21 @@ Next, carry out the following steps:
 10. Turn your vector of numbers into a matrix with 5 columns.
 
 ```{r}
-#| label: add-label-4
-#add comment here
-
+#| label: matrix-5-column
+# Turned our vector of numbers into a matrix with 5 columns.
+code_matrix <- code_break |> 
+  pull(step9) |> 
+  matrix(ncol = 5) |> 
+  as_tibble(column_name = "V") |> 
+  mutate(id = row_number())
   
 ```
 
 11. Separately from your top secret numbers, create a vector of all the even numbers between 1 and 382. Name it "evens". That is, "evens" should contain 2, 4, 6, 8 ..., 382.
 
 ```{r}
-#| label: add-label-5
-#add comment here
+#| label: separate_secret_numbers
+#create a vector of all the even numbers between 1 and 382.
 evens <- seq(from = 2, to = 382, by = 2)
 ```
 
@@ -190,8 +194,17 @@ evens <- seq(from = 2, to = 382, by = 2)
 15. Turn your matrix back into a vector.
 
 ```{r}
-#| label: add-label-6
-#add comment here
+#| label: subtract-from-vectors
+#modifying vectors by subtracting, multiplying, and turning matrix into vector
+code_vector <- code_matrix |> 
+  mutate(V1 = V1 - evens) |> 
+  mutate(V3 = if_else(id %in% 18:24, V3 - 100, V3)) |> 
+  mutate(V4 = V4*2, 
+         V5 = V5*2) |> 
+  select(-id) |> 
+  pivot_longer(V1:V5, names_to = "column", values_to = "code") |> 
+  arrange(column) |> 
+  mutate(id = row_number())
 
 ```
 
