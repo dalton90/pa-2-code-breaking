@@ -13,7 +13,11 @@ execute:
 
 
 ```{r}
-#| label: add-label-0
+#| label: setup
+#| echo: FALSE
+# adding packages
+library(tidyverse)
+
 
 
 ```
@@ -89,9 +93,13 @@ Using the above, we can complete the following 5 steps within a few lines of cod
 If you want to look at `my_symbols` click on it under the Environment Tab in the top right panel.  
 
 ```{r}
-#| label: add-label-1
-# add comment here
+#| label: creating-vector
+# making one long vector out of all our symbols names my_symbols
 
+my_symbols <- tibble(symbols = c(lower_case, 
+                                 upper_case, 
+                                 punctuation)) |> 
+              mutate(num = row_number()) 
 
 ```
 
