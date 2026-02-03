@@ -213,9 +213,11 @@ code_vector <- code_matrix |>
 *Hint:* Use a relational comparison similar to what you used in the last checkpoint, but here you will need to subset values from your vector!
 
 ```{r}
-#| label: add-label-7
-#code to verify that indices 500 and beyond have values **below** 100
+#| label: verify-indices500-below100
 
+#code to verify that indices 500 and beyond have values **below** 100
+code_vector |> 
+  summarize(beyond = sum(if_else(id %in% 500:max(id) >= 100, TRUE, FALSE))) 
 ```
 
 <!-- Computer Stage your Changes, Commit, and Push to the Git Repository-->
