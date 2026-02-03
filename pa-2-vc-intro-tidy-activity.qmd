@@ -261,9 +261,12 @@ code_vector_update |>
 Use your final vector of numbers as indices for my_symbols to discover the final message, by running the following code:
 
 ```{r}
-#| label: add-label-10
-# add comment here
-
+#| label: final-message
+# uncoding final message
+code_vector_update |> 
+  left_join(my_symbols, by = c("code" = "num")) |> 
+  pull(symbols) |> 
+  stringr::str_c(collapse = "")
 ```
 
 Google the first line of this message, if you do not recognize it, to see what poem it is.
